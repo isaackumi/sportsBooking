@@ -3,11 +3,24 @@ var hbs = require('express-handlebars');
 var express = require('express');
 var hbs=require('express-handlebars');
 var path=require('path');
-var logger
+const mongoose = require('mongoose');
+var MongoClient = require('mongodb').MongoClient;
 var app=express();
 var port=3000;
 
+// Include external routes
 var index=require('./Routes/index.js');
+
+
+ 
+mongoose.connect('mongodb://localhost:27017/test', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+}).then((result) => {
+  console.log('connected to database');  
+}).catch((err) => {
+   console.log('Database connection error.');
+});
 
 // Middlewares
 app.engine('hbs', hbs({extname: 'hbs', defaultLayout: 'layout', layoutsDir: __dirname + '/views/layouts/'}));
@@ -15,10 +28,9 @@ app.engine('hbs', hbs({extname: 'hbs', defaultLayout: 'layout', layoutsDir: __di
 app.set('view', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
-app.use(logger('dev'));
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/',index);
