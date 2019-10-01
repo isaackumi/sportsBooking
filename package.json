@@ -1,0 +1,22 @@
+{
+  "name": "bookingSystem",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": ""
+  },
+  "dependencies": {
+    "assert": "^1.4.1",
+    "body-parser": "^1.19.0",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.0",
+    "dotenv": "^4.0.0",
+    "express": "^4.17.1",
+    "express-handlebars": "^3.0.0",
+    "mongodb": "^2.2.25",
+    "mongoose": "^5.7.3",
+    "morgan": "^1.9.1",
+    "process": "^0.11.9",
+    "serve-favicon": "^2.5.0"
+  }
+}
